@@ -24,6 +24,7 @@ CREATE TABLE request(
 	pickfrom CHAR(20) NOT NULL,
 	type CHAR(10) NOT NULL,
 	route CHAR(40) NOT NULL,
+	dat CHAR(20) NOT NULL,
 	time CHAR(20) NOT NULL,
 	FOREIGN KEY(name,contact) REFERENCES traveller(name,contact)
 );

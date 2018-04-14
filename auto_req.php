@@ -13,17 +13,17 @@ if ($conn->connect_error) {
 } 
 
 $q=$_POST['name'];
-$w=$_POST['auto'];
-$e=$_POST['start_time'];
-$r=$_POST['finish_time'];
-$t=$_POST['contact_no'];
-$y=$_POST['email'];
-$u=$_POST['auto_no'];
+$w=$_POST['id'];
+$e=$_POST['class'];
+$r=$_POST['auto'];
+$t=$_POST['route'];
+$y=$_POST['major'];
+$u=$_POST['start_date'];
 
-$sql = "INSERT INTO auto(id,name,type,afrom,ato,contact,email) VALUES('$u','$q','$w','$e','$r','$t','$y')";
+$sql = "INSERT INTO request(name,contact,pickfrom,type,route,dat,time) VALUES('$q','$w','$e','$r','$t','$y','$u')";
 
 if ($conn->query($sql)==TRUE) {
-echo "You have now successfully registered with us!!!! Welcome to the family";
+echo "You request is under process!! Our agent will contact you ASAP!!!!";
 } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
 }
