@@ -19,14 +19,29 @@ $r=$_POST['auto'];
 $t=$_POST['route'];
 $y=$_POST['major'];
 $u=$_POST['start_date'];
+$i=(int)$_POST['pass'];
 
-$sql = "INSERT INTO request(name,contact,pickfrom,type,route,dat,time) VALUES('$q','$w','$e','$r','$t','$y','$u')";
-
+$ti=date("H:i");
+$t2=date("Y-m-d");
+$t3=strtotime($y);
+$t4=strtotime($u)-strtotime($t2)+$t3;
+$intr=$t4-strtotime($ti);
+if($intr>=3600){
+$t5=strtotime($u)-strtotime($t2);
+$t6=(int)($t5/3600);
+$u="$t6".":00";
+$sql = "INSERT INTO request(name,contact,pickfrom,type,route,dat,time,nop) VALUES('$q','$w','$e','$r','$t','$y','$u',$i)";
 if ($conn->query($sql)==TRUE) {
-echo "You request is under process!! Our agent will contact you ASAP!!!!";
+	echo 'Check your full name and contact properly'.'<br>';
+	echo '<form method="post" action="auto_select.php">';
+	echo '<input type="text" name="name" value=' .$q.'>';
+	echo '<input type="text" name="contact" value='.$w.'>';
+	echo '<input type="submit" value="Submit">';
+	echo '</form>';
 } else {
-    echo "Error: " . $sql . "<br>" . $conn->error;
+   	echo "Sorry you are not registered with us!!! Please register first!!!";
 }
-
+} else if($intr>=0) echo "Sorry you need to book an hour advance!!!!";
+else echo "Sorry the time has already passed!!!!";
 $conn->close();
 ?>

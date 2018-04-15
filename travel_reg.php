@@ -22,10 +22,13 @@ $y=$_POST['email'];
 $sql = "INSERT INTO traveller(name,gender,contact,dob,address,email) VALUES('$q','$w','$e','$r','$t','$y')";
 
 if ($conn->query($sql)==TRUE) {
-echo "You have now successfully registered with us!!! We are at your service 24*7!!!";
+echo "You have now successfully registered with us!!! We are at your service 24*7!!!" . "<br>";
 } else {
-    echo "Error: " . $sql . "<br>" . $conn->error;
+    echo "You are already registered!!! Please select auto booking from main site!!!" . "<br>";
 }
 
 $conn->close();
+echo "Redirecting to home page" . "<br>";
+header("refresh:3;index.html");
+exit;
 ?>

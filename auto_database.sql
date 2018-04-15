@@ -5,7 +5,8 @@ CREATE TABLE auto(
 	afrom CHAR(20) NOT NULL,
 	ato CHAR(20) NOT NULL,
 	contact CHAR(10) ,
-	email CHAR(20)
+	email CHAR(20) ,
+	cap INT NOT NULL
 );
 
 CREATE TABLE traveller(
@@ -26,6 +27,24 @@ CREATE TABLE request(
 	route CHAR(40) NOT NULL,
 	dat CHAR(20) NOT NULL,
 	time CHAR(20) NOT NULL,
+	nop INT NOT NULL,
 	FOREIGN KEY(name,contact) REFERENCES traveller(name,contact)
 );
 
+CREATE TABLE book_status(
+	name CHAR(20) NOT NULL,
+	contact CHAR(10) NOT NULL,
+	id CHAR(10) NOT NULL,
+	nop INT NOT NULL,
+	tim CHAR(20) NOT NULL,
+	dat CHAR(20) NOT NULL,
+	FOREIGN KEY(name,contact) REFERENCES traveller(name,contact),
+	FOREIGN KEY(id) REFERENCES auto(id)
+);
+
+CREATE TABLE auto_full(
+	id CHAR(10) NOT NULL,
+	nop INT NOT NULL,
+	tim CHAR(20) NOT NULL,
+	PRIMARY KEY(id,tim)
+);
