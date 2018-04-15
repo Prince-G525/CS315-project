@@ -45,6 +45,9 @@ CREATE TABLE book_status(
 CREATE TABLE auto_full(
 	id CHAR(10) NOT NULL,
 	nop INT NOT NULL,
+	dat CHAR(20) NOT NULL,
 	tim CHAR(20) NOT NULL,
 	PRIMARY KEY(id,tim)
 );
+
+CREATE INDEX ano ON book_status(id);

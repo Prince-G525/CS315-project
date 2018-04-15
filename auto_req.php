@@ -32,10 +32,12 @@ $t6=(int)($t5/3600);
 $u="$t6".":00";
 $sql = "INSERT INTO request(name,contact,pickfrom,type,route,dat,time,nop) VALUES('$q','$w','$e','$r','$t','$y','$u',$i)";
 if ($conn->query($sql)==TRUE) {
-	echo 'Check your full name and contact properly'.'<br>';
+	echo 'Check your full name, contact, date and time properly'.'<br>';
 	echo '<form method="post" action="auto_select.php">';
 	echo '<input type="text" name="name" value=' .$q.'>';
-	echo '<input type="text" name="contact" value='.$w.'>';
+	echo '<input type="text" name="contact" value='.$w.'>'.'<br>';
+	echo '<input type="text" name="date" value='.$y.'>';
+	echo '<input type="text" name="time" value='.$u.'>'.'<br>';
 	echo '<input type="submit" value="Submit">';
 	echo '</form>';
 } else {
