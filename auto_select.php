@@ -25,7 +25,8 @@ if($result->num_rows > 0) {
 	$t2 = $row['nop'];
 	$t3 = $row['dat'];
 	$t4 = $row['type'];
-	$sql = "(SELECT af.id FROM auto_full as af,auto as a2 WHERE af.tim='$t1' AND af.dat='$t3' AND a2.cap-af.nop-'$t2' >=0 AND af.id IN (SELECT DISTINCT(b.id) FROM book_status AS b, auto AS a WHERE b.dat='$t3' AND a.type='$t4')) UNION (SELECT id FROM auto WHERE type='$t4' AND STRCMP('$t1',afrom)>=0 AND STRCMP('$t1',ato)<=0 AND cap-'$t2' >= 0)";
+	#$sql = "(SELECT af.id FROM auto_full as af,auto as a2 WHERE af.tim='$t1' AND af.dat='$t3' AND a2.cap-af.nop-'$t2' >=0 AND af.id IN (SELECT DISTINCT(b.id) FROM book_status AS b, auto AS a WHERE b.dat='$t3' AND b.tim='$t1' AND a.type='$t4')) UNION (SELECT id FROM auto WHERE type='$t4' AND STRCMP('$t1',afrom)>=0 AND STRCMP('$t1',ato)<=0 AND cap-'$t2' >= 0)";
+	$sql = "(SELECT af.id FROM auto_full as af,auto as a2 WHERE af.tim='$t1' AND af.dat='$t3' AND a2.cap-af.nop-'$t2' >=0 AND af.id IN (SELECT DISTINCT(b.id) FROM book_status AS b, auto AS a WHERE b.dat='$t3' AND b.tim='$t1' AND a.type='$t4')) UNION (SELECT id FROM auto WHERE type='$t4' AND STRCMP('$t1',afrom)>=0 AND STRCMP('$t1',ato)<=0 AND cap-'$t2' >= 0 AND id NOT IN(SELECT DISTINCT(b2.id) FROM book_status as b2 WHERE b2.dat='$t3' AND b2.tim='$t1'))";
 	$result = $conn->query($sql);
 	if($result->num_rows > 0){
 		echo 'Select from the following available autos and check your full name, contact, date and time properly'.'<br>';
